@@ -15,7 +15,6 @@ Route::group(['name' => 'api'], function () {
     Route::get('/about', [App\Http\Controllers\Api\AboutController::class, 'index']);
     Route::get('/slider/{id}', [App\Http\Controllers\Api\SliderController::class, 'show']);
     Route::get('/slider', [App\Http\Controllers\Api\SliderController::class, 'index']);
-
     Route::get('/settings', function () {
         return App\Models\Setting::all();
     });

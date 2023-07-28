@@ -22,7 +22,6 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>@lang('backend.photo'):</th>
                                 <th>@lang('backend.name'):</th>
                                 <th>@lang('backend.actions'):</th>
                             </tr>
@@ -31,7 +30,6 @@
                             @foreach($products as $product)
                                 <tr>
                                     <td>{{ $product->id }}</td>
-                                    <td><img src="{{ asset($product->photo) }}" style="width: 120px;height: 80px;"></td>
                                     <td>{{ $product->translate(app()->getLocale())->name ?? '-' }}</td>
                                     @include('backend.templates.components.dt-settings',['variable' => 'product','value' => $product])
                                 </tr>

@@ -12,15 +12,12 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class Product extends Model implements TranslatableContract
 {
     use Translatable, LogsActivity;
-
-    public $translatedAttributes = ['name'];
+    public array $translatedAttributes = ['name'];
     protected $guarded = [];
-
-    public function photos()
+    public function photos(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(ProductPhotos::class);
     }
-
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logAll();

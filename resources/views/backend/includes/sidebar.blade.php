@@ -2,7 +2,7 @@
     <div data-simplebar class="h-100" style="overflow-y: auto;">
         <div id="sidebar-menu">
             <ul class="metismenu list-unstyled" id="side-menu">
-{{--                {{ creation('Faq','Faq',true,false) }}--}}
+{{--                {{ creation('Service','Faq',true,false) }}--}}
                 <li>
                     <a href="{{ route('backend.dashboard') }}" class="waves-effect">
                         <i class="ri-home-4-fill"></i>
@@ -18,6 +18,31 @@
                         </a>
                     </li>
                 @endcan
+                @can('service index')
+                    <li>
+                        <a href="{{ route('backend.service.index') }}" class="waves-effect">
+                            <i class="fas fa-wrench"></i>
+                            <span>@lang('backend.service')</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('product index')
+                    <li>
+                        <a href="{{ route('backend.product.index') }}" class="waves-effect">
+                            <i class="fas fa-video"></i>
+                            <span>@lang('backend.product')</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('partner index')
+                    <li>
+                        <a href="{{ route('backend.partner.index') }}" class="waves-effect">
+                            <i class="fas fa-link"></i>
+                            <span>@lang('backend.partner')</span>
+                        </a>
+                    </li>
+                @endcan
+
                 @can('content index')
                     <li>
                         <a href="{{ route('backend.content.index') }}" class="waves-effect">
@@ -58,22 +83,6 @@
                         </a>
                     </li>
                 @endcan
-                @can('service index')
-                    <li>
-                        <a href="{{ route('backend.service.index') }}" class="waves-effect">
-                            <i class="fas fa-wrench"></i>
-                            <span>@lang('backend.service')</span>
-                        </a>
-                    </li>
-                @endcan
-                @can('product index')
-                    <li>
-                        <a href="{{ route('backend.product.index') }}" class="waves-effect">
-                            <i class="fas fa-couch"></i>
-                            <span>@lang('backend.product')</span>
-                        </a>
-                    </li>
-                @endcan
                 @can('portfolio index')
                     <li>
                         <a href="{{ route('backend.portfolio.index') }}" class="waves-effect">
@@ -82,14 +91,7 @@
                         </a>
                     </li>
                 @endcan
-                @can('partner index')
-                    <li>
-                        <a href="{{ route('backend.partner.index') }}" class="waves-effect">
-                            <i class="fas fa-link"></i>
-                            <span>@lang('backend.partner')</span>
-                        </a>
-                    </li>
-                @endcan
+
                 @can('blog index')
                     <li>
                         <a href="{{ route('backend.blog.index') }}" class="waves-effect">

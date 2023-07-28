@@ -25,7 +25,6 @@
                                                 </div>
                                             </div>
                                         @endforeach
-                                        @include('backend.templates.items.create.validations.photo')
                                         @include('backend.templates.items.create.validations.photos')
                                     </div>
                                 </div>

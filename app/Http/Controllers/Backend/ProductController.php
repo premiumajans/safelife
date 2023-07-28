@@ -31,7 +31,6 @@ class ProductController extends Controller
         check_permission('product create');
         try {
             $product = new Product();
-            $product->photo = upload('product', $request->file('photo'));
             $product->save();
             foreach (active_langs() as $lang) {
                 $translation = new ProductTranslation();
@@ -69,12 +68,6 @@ class ProductController extends Controller
         try {
             $product = Product::where('id', $id)->with('photos')->first();
             DB::transaction(function () use ($request, $product) {
-                if ($request->hasFile('photo')) {
-                    if (file_exists($product->photo)) {
-                        unlink(public_path($product->photo));
-                    }
-                    $product->photo = upload('product', $request->file('photo'));
-                }
                 if ($request->hasFile('photos')) {
                     foreach (multi_upload('product', $request->file('photos')) as $photo) {
                         $productPhoto = new ProductPhotos();

@@ -16,7 +16,7 @@ class PartnerController extends Controller
     public function index()
     {
         check_permission('partner index');
-        $partners = Partner::all();
+        $partners = Partner::with('photos')->get();
         return view('backend.partner.index', get_defined_vars());
     }
 
@@ -32,9 +32,22 @@ class PartnerController extends Controller
         try {
             $partner = new Partner();
             $partner->photo = upload('partner', $request->file('photo'));
-            $partner->alt = $request->alt;
-            $partner->link = $request->link;
             $partner->save();
+            foreach (active_langs() as $lang) {
+                $translation = new PartnerTranslation();
+                $translation->locale = $lang->code;
+                $translation->partner_id = $partner->id;
+                $translation->name = $request->name[$lang->code];
+                $translation->description = $request->description[$lang->code];
+                $translation->save();
+            }
+            if ($request->hasFile('photos')){
+                foreach (multi_upload('partner', $request->file('photos')) as $photo) {
+                    $partnerPhoto = new PartnerPhotos();
+                    $partnerPhoto->photo = $photo;
+                    $partner->photos()->save($partnerPhoto);
+                };
+            }
             alert()->success(__('messages.success'));
             return redirect(route('backend.partner.index'));
         } catch (Exception $e) {
@@ -46,7 +59,7 @@ class PartnerController extends Controller
     public function edit(string $id)
     {
         check_permission('partner edit');
-        $partner = Partner::where('id', $id)->first();
+        $partner = Partner::where('id', $id)->with('photos')->first();
         return view('backend.partner.edit', get_defined_vars());
     }
 
@@ -54,7 +67,7 @@ class PartnerController extends Controller
     {
         check_permission('partner edit');
         try {
-            $partner = Partner::where('id', $id)->first();
+            $partner = Partner::where('id', $id)->with('photos')->first();
             DB::transaction(function () use ($request, $partner) {
                 if ($request->hasFile('photo')) {
                     if (file_exists($partner->photo)) {
@@ -62,8 +75,17 @@ class PartnerController extends Controller
                     }
                     $partner->photo = upload('partner', $request->file('photo'));
                 }
-                $partner->alt = $request->alt;
-                $partner->link = $request->link;
+                if ($request->hasFile('photos')) {
+                    foreach (multi_upload('partner', $request->file('photos')) as $photo) {
+                        $partnerPhoto = new PartnerPhotos();
+                        $partnerPhoto->photo = $photo;
+                        $partner->photos()->save($partnerPhoto);
+                    }
+                }
+                foreach (active_langs() as $lang) {
+                    $partner->translate($lang->code)->name = $request->name[$lang->code];
+                    $partner->translate($lang->code)->description = $request->description[$lang->code];
+                }
                 $partner->save();
             });
             alert()->success(__('messages.success'));

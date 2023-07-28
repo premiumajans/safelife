@@ -15,9 +15,8 @@ class ReportController extends Controller
     public function index()
     {
         abort_if(Gate::denies('report index'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $reports = Activity::paginate(10);
-//        $reports = Activity::all();
-
+//        $reports = Activity::paginate(10);
+        $reports = Activity::all();
         return view('backend.report.index', get_defined_vars());
     }
 

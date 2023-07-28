@@ -25,7 +25,7 @@ Route::group(['middleware' => 'auth:admin', 'as' => 'backend.'], function () {
         Route::get('blog/{id}/change-status', [App\Http\Controllers\Backend\BlogController::class, 'status'])->name('blogStatus');
         Route::get('portfolio/{id}/change-status', [App\Http\Controllers\Backend\PortfolioController::class, 'status'])->name('portfolioStatus');
         Route::get('service/{id}/change-status', [App\Http\Controllers\Backend\ServiceController::class, 'status'])->name('serviceStatus');
-        Route::get('service/{id}/change-status', [App\Http\Controllers\Backend\CategoryController::class, 'status'])->name('categoryStatus');
+        Route::get('category/{id}/change-status', [App\Http\Controllers\Backend\CategoryController::class, 'status'])->name('categoryStatus');
         Route::get('media/{id}/change-status', [App\Http\Controllers\Backend\MediaController::class, 'status'])->name('mediaStatus');
         Route::get('catalog/{id}/change-status', [App\Http\Controllers\Backend\CatalogController::class, 'status'])->name('catalogStatus');
         Route::get('mail/{id}/change-status', [App\Http\Controllers\Backend\MailController::class, 'status'])->name('mailStatus');
@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth:admin', 'as' => 'backend.'], function () {
     });
     Route::group(['name' => 'delete'], function () {
         Route::get('faq/{id}/delete', [App\Http\Controllers\Backend\FaqController::class, 'delete'])->name('faqDelete');
+        Route::get('category/{id}/delete', [App\Http\Controllers\Backend\CategoryController::class, 'delete'])->name('categoryDelete');
         Route::get('partner/{id}/delete', [App\Http\Controllers\Backend\PartnerController::class, 'delete'])->name('partnerDelete');
         Route::get('product/{id}/delete', [App\Http\Controllers\Backend\ProductController::class, 'delete'])->name('productDelete');
         Route::get('blog/{id}/delete', [App\Http\Controllers\Backend\BlogController::class, 'delete'])->name('blogDelete');

@@ -3,6 +3,7 @@
 use App\Models\SiteLanguage;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\File;

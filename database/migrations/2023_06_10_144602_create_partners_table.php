@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->longText('photo');
             $table->longText('alt')->nullable();
-            $table->longText('link')->nullable();
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

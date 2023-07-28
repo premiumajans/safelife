@@ -16,7 +16,7 @@ class Media extends Model implements TranslatableContract
     public $translatedAttributes = ['name'];
     protected $guarded = [];
 
-    public function photos()
+    public function photos(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(MediaPhotos::class);
     }

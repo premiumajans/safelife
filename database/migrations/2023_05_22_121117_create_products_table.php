@@ -10,7 +10,6 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->longText('photo')->nullable();
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

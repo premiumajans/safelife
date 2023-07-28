@@ -19,6 +19,8 @@ Route::group(['middleware' => 'auth:admin', 'as' => 'backend.'], function () {
     Route::post('change-alt-category', [App\Http\Controllers\Backend\ContentController::class, 'changeAltCategory'])->name('changeAltCategory');
     Route::get('delete/photo/{model}/{id}', [App\Http\Controllers\Backend\HomeController::class, 'deletePhoto'])->name('deletePhoto');
     Route::group(['name' => 'status'], function () {
+Route::get('project/{id}/change-status',[App\Http\Controllers\Backend\ProjectController::class,'status'])->name('projectStatus');
+
         Route::get('faq/{id}/change-status', [App\Http\Controllers\Backend\FaqController::class, 'status'])->name('faqStatus');
         Route::get('partner/{id}/change-status', [App\Http\Controllers\Backend\PartnerController::class, 'status'])->name('partnerStatus');
         Route::get('product/{id}/change-status', [App\Http\Controllers\Backend\ProductController::class, 'status'])->name('productStatus');
@@ -40,6 +42,8 @@ Route::group(['middleware' => 'auth:admin', 'as' => 'backend.'], function () {
         })->name('permissionsStatus');
     });
     Route::group(['name' => 'delete'], function () {
+Route::get('project/{id}/delete',[App\Http\Controllers\Backend\ProjectController::class,'delete'])->name('projectDelete');
+
         Route::get('faq/{id}/delete', [App\Http\Controllers\Backend\FaqController::class, 'delete'])->name('faqDelete');
         Route::get('category/{id}/delete', [App\Http\Controllers\Backend\CategoryController::class, 'delete'])->name('categoryDelete');
         Route::get('partner/{id}/delete', [App\Http\Controllers\Backend\PartnerController::class, 'delete'])->name('partnerDelete');
@@ -65,6 +69,8 @@ Route::group(['middleware' => 'auth:admin', 'as' => 'backend.'], function () {
         Route::get('/newsletter/{id}/delete', [App\Http\Controllers\Backend\NewsletterController::class, 'delNewsletter'])->name('delNewsletter');
     });
     Route::group(['name' => 'resource'], function () {
+Route::resource('/project',App\Http\Controllers\Backend\ProjectController::class);
+
         Route::resource('/faq', App\Http\Controllers\Backend\FaqController::class);
         Route::resource('/partner', App\Http\Controllers\Backend\PartnerController::class);
         Route::resource('/categories', App\Http\Controllers\Backend\CategoryController::class);

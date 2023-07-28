@@ -1,16 +1,14 @@
 <?php
 
-use App\Models\SiteLanguage;
-use App\Models\Setting;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image;
+
+use Illuminate\Support\{Facades\Gate, Facades\File, Facades\Artisan, Str};
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Artisan;
+use App\Models\{SiteLanguage, Setting};
+use Intervention\Image\Facades\Image;
+
 
 if (!function_exists('upload')) {
-    function upload($path, $file)
+    function upload($path, $file): string
     {
         try {
             if (!File::isDirectory(public_path('images/' . $path))) {
@@ -46,7 +44,7 @@ if (!function_exists('video_upload')) {
 }
 
 if (!function_exists('pdf_upload')) {
-    function pdf_upload($file)
+    function pdf_upload($file): string|\Illuminate\Http\RedirectResponse
     {
         try {
             $img = $file;

@@ -165,6 +165,7 @@ return array (
   'posts' => 'Posts',
   'product' => '',
   'products' => 'Products',
+  'project' => 'Projects',
   'read' => 'Read',
   'read-mail' => 'Read Mail',
   'read-more' => 'Read More',
@@ -234,5 +235,4 @@ return array (
   'you-have-new-order' => 'You have a new order',
   'your-item-message' => 'Your item is awaiting review. Please save the item number to edit or delete the listing.',
   'your-item-number' => 'Your item number',
-
 );

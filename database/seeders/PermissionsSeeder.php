@@ -31,6 +31,7 @@ class PermissionsSeeder extends Seeder
             'service',
             'partner',
             'faq',
+            'project',
         ];
         foreach ($permissions as $permission) {
             add_permission($permission);

@@ -111,6 +111,7 @@ return array (
   'posts' => 'Посты',
   'product' => '',
   'products' => 'Продукты',
+  'project' => 'Проекты',
   'read' => 'Прочитано',
   'read-mail' => 'Прочитать письмо',
   'read-more' => 'Читать далее',

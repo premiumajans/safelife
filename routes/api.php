@@ -3,10 +3,10 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group(['name' => 'api'], function () {
-Route::get('/product/{id}',[App\Http\Controllers\Api\ProductController::class,'show']);
-
-Route::get('/product',[App\Http\Controllers\Api\ProductController::class,'index']);
-
+    Route::get('/project/{id}', [App\Http\Controllers\Api\ProjectController::class, 'show']);
+    Route::get('/project', [App\Http\Controllers\Api\ProjectController::class, 'index']);
+    Route::get('/product/{id}', [App\Http\Controllers\Api\ProductController::class, 'show']);
+    Route::get('/product', [App\Http\Controllers\Api\ProductController::class, 'index']);
     Route::get('/partner/{id}', [App\Http\Controllers\Api\PartnerController::class, 'show']);
     Route::get('/partner', [App\Http\Controllers\Api\PartnerController::class, 'index']);
     Route::get('/service/{id}', [App\Http\Controllers\Api\ServiceController::class, 'show']);

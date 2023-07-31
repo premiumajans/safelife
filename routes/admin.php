@@ -17,16 +17,14 @@ Route::group(['middleware' => 'auth:admin', 'as' => 'backend.'], function () {
     Route::get('newsletter/history', [App\Http\Controllers\Backend\NewsletterController::class, 'newsletterHistory'])->name('newsletterHistory');
     Route::post('change-category', [App\Http\Controllers\Backend\ContentController::class, 'changeCategory'])->name('changeCategory');
     Route::post('change-alt-category', [App\Http\Controllers\Backend\ContentController::class, 'changeAltCategory'])->name('changeAltCategory');
+    Route::get('photo/{id}/photos',[App\Http\Controllers\Backend\PhotoController::class,'photos'])->name('photoPhotos');
+    Route::post('photo/{id}/upload/photo',[App\Http\Controllers\Backend\PhotoController::class,'upload'])->name('uploadPhoto');
     Route::get('delete/photo/{model}/{id}', [App\Http\Controllers\Backend\HomeController::class, 'deletePhoto'])->name('deletePhoto');
     Route::group(['name' => 'status'], function () {
-Route::get('video/{id}/change-status',[App\Http\Controllers\Backend\VideoController::class,'status'])->name('videoStatus');
-
-Route::get('photo/{id}/change-status',[App\Http\Controllers\Backend\PhotoController::class,'status'])->name('photoStatus');
-
-Route::get('sertificate/{id}/change-status',[App\Http\Controllers\Backend\SertificateController::class,'status'])->name('sertificateStatus');
-
-Route::get('project/{id}/change-status',[App\Http\Controllers\Backend\ProjectController::class,'status'])->name('projectStatus');
-
+        Route::get('video/{id}/change-status', [App\Http\Controllers\Backend\VideoController::class, 'status'])->name('videoStatus');
+        Route::get('photo/{id}/change-status', [App\Http\Controllers\Backend\PhotoController::class, 'status'])->name('photoStatus');
+        Route::get('sertificate/{id}/change-status', [App\Http\Controllers\Backend\SertificateController::class, 'status'])->name('sertificateStatus');
+        Route::get('project/{id}/change-status', [App\Http\Controllers\Backend\ProjectController::class, 'status'])->name('projectStatus');
         Route::get('faq/{id}/change-status', [App\Http\Controllers\Backend\FaqController::class, 'status'])->name('faqStatus');
         Route::get('partner/{id}/change-status', [App\Http\Controllers\Backend\PartnerController::class, 'status'])->name('partnerStatus');
         Route::get('product/{id}/change-status', [App\Http\Controllers\Backend\ProductController::class, 'status'])->name('productStatus');
@@ -48,14 +46,10 @@ Route::get('project/{id}/change-status',[App\Http\Controllers\Backend\ProjectCon
         })->name('permissionsStatus');
     });
     Route::group(['name' => 'delete'], function () {
-Route::get('video/{id}/delete',[App\Http\Controllers\Backend\VideoController::class,'delete'])->name('videoDelete');
-
-Route::get('photo/{id}/delete',[App\Http\Controllers\Backend\PhotoController::class,'delete'])->name('photoDelete');
-
-Route::get('sertificate/{id}/delete',[App\Http\Controllers\Backend\SertificateController::class,'delete'])->name('sertificateDelete');
-
-Route::get('project/{id}/delete',[App\Http\Controllers\Backend\ProjectController::class,'delete'])->name('projectDelete');
-
+        Route::get('video/{id}/delete', [App\Http\Controllers\Backend\VideoController::class, 'delete'])->name('videoDelete');
+        Route::get('photo/{id}/delete', [App\Http\Controllers\Backend\PhotoController::class, 'delete'])->name('photoDelete');
+        Route::get('sertificate/{id}/delete', [App\Http\Controllers\Backend\SertificateController::class, 'delete'])->name('sertificateDelete');
+        Route::get('project/{id}/delete', [App\Http\Controllers\Backend\ProjectController::class, 'delete'])->name('projectDelete');
         Route::get('faq/{id}/delete', [App\Http\Controllers\Backend\FaqController::class, 'delete'])->name('faqDelete');
         Route::get('category/{id}/delete', [App\Http\Controllers\Backend\CategoryController::class, 'delete'])->name('categoryDelete');
         Route::get('partner/{id}/delete', [App\Http\Controllers\Backend\PartnerController::class, 'delete'])->name('partnerDelete');
@@ -81,14 +75,10 @@ Route::get('project/{id}/delete',[App\Http\Controllers\Backend\ProjectController
         Route::get('/newsletter/{id}/delete', [App\Http\Controllers\Backend\NewsletterController::class, 'delNewsletter'])->name('delNewsletter');
     });
     Route::group(['name' => 'resource'], function () {
-Route::resource('/video',App\Http\Controllers\Backend\VideoController::class);
-
-Route::resource('/photo',App\Http\Controllers\Backend\PhotoController::class);
-
-Route::resource('/sertificate',App\Http\Controllers\Backend\SertificateController::class);
-
-Route::resource('/project',App\Http\Controllers\Backend\ProjectController::class);
-
+        Route::resource('/video', App\Http\Controllers\Backend\VideoController::class);
+        Route::resource('/photo', App\Http\Controllers\Backend\PhotoController::class);
+        Route::resource('/sertificate', App\Http\Controllers\Backend\SertificateController::class);
+        Route::resource('/project', App\Http\Controllers\Backend\ProjectController::class);
         Route::resource('/faq', App\Http\Controllers\Backend\FaqController::class);
         Route::resource('/partner', App\Http\Controllers\Backend\PartnerController::class);
         Route::resource('/categories', App\Http\Controllers\Backend\CategoryController::class);

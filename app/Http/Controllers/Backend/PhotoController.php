@@ -38,15 +38,8 @@ class PhotoController extends Controller
                 $translation->locale = $lang->code;
                 $translation->photo_id = $photo->id;
                 $translation->name = $request->name[$lang->code];
-                $translation->description = $request->description[$lang->code];
                 $translation->save();
             }
-            foreach (multi_upload('photo',$request->file('photos')) as $photo)
-            {
-                $photoPhoto = new PhotoPhotos();
-                $photoPhoto->photo = $photo;
-                $photo->photos()->save(photoPhoto);
-            };
             alert()->success(__('messages.success'));
             return redirect(route('backend.photo.index'));
         } catch (Exception $e) {
@@ -68,22 +61,14 @@ class PhotoController extends Controller
         try {
             $photo = Photo::where('id', $id)->with('photos')->first();
             DB::transaction(function () use ($request, $photo) {
-                if($request->hasFile('photo')){
-                    if(file_exists($photo->photo)){
+                if ($request->hasFile('photo')) {
+                    if (file_exists($photo->photo)) {
                         unlink(public_path($photo->photo));
                     }
-                $photo->photo = upload('photo',$request->file('photo'));
-                }
-                if ($request->hasFile('photos')) {
-                   foreach (multi_upload('photo', $request->file('photos')) as $photo) {
-                   $photoPhoto = new PhotoPhotos();
-                   $photoPhoto->photo = $photo;
-                   $photo->photos()->save($photoPhoto);
-                   }
+                    $photo->photo = upload('photo', $request->file('photo'));
                 }
                 foreach (active_langs() as $lang) {
-                   $photo->translate($lang->code)->name = $request->name[$lang->code];
-                   $photo->translate($lang->code)->description = $request->description[$lang->code];
+                    $photo->translate($lang->code)->name = $request->name[$lang->code];
                 }
                 $photo->save();
             });
@@ -93,6 +78,25 @@ class PhotoController extends Controller
             alert()->error(__('backend.error'));
             return redirect()->back();
         }
+    }
+
+    public function photos($id)
+    {
+        check_permission('photo index');
+        $photos = Photo::where('id', $id)->with('photos')->first();
+        return view('backend.photo.photos', get_defined_vars());
+    }
+
+    public function upload(Request $request)
+    {
+        check_permission('photo create');
+        $gallery = Photo::where('id',$request->photo_id)->with('photos')->first();
+        foreach (multi_upload('gallery', $request->file('photos')) as $photo) {
+            $galleryPhoto = new PhotoPhotos();
+            $galleryPhoto->photo = $photo;
+            $gallery->photos()->save($galleryPhoto);
+        }
+        return redirect()->back();
     }
 
     public function status(string $id)

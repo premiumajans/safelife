@@ -23,6 +23,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>@lang('backend.slug'):</th>
+                                <th>@lang('backend.photos')</th>
                                 <th>@lang('backend.actions'):</th>
                             </tr>
                             </thead>
@@ -30,7 +31,8 @@
                             @foreach($photos as $photo)
                                 <tr>
                                     <td>{{ $photo->id }}</td>
-                                    <td>{{ $photo->slug }}</td>
+                                    <td><img src="{{ asset($photo->photo) }}" style="width: 100px;height: 80px;"></td>
+                                    <td class="text-center"><a class="btn btn-primary" href="{{ route('backend.photoPhotos',$photo->id) }}"><i class="fas fa-images"></i></a></td>
                                     @include('backend.templates.components.dt-settings',['variable' => 'photo','value' => $photo])
                                 </tr>
                             @endforeach

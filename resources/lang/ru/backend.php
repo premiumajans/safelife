@@ -127,6 +127,7 @@ return array (
   'send' => 'Отправить',
   'send-message' => 'Отправить сообщение',
   'seo-settings' => 'Настройки SEO',
+  'sertificate' => 'Сертификаты',
   'service' => '',
   'services' => 'Услуги',
   'settings' => 'Настройки',

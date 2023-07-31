@@ -2,7 +2,7 @@
     <div data-simplebar class="h-100" style="overflow-y: auto;">
         <div id="sidebar-menu">
             <ul class="metismenu list-unstyled" id="side-menu">
-{{--                {{ creation('Project','Project',true,false) }}--}}
+{{--                {{ creation('Sertificate','Sertificate',true,false) }}--}}
                 <li>
                     <a href="{{ route('backend.dashboard') }}" class="waves-effect">
                         <i class="ri-home-4-fill"></i>
@@ -47,6 +47,14 @@
                         <a href="{{ route('backend.partner.index') }}" class="waves-effect">
                             <i class="fas fa-link"></i>
                             <span>@lang('backend.partner')</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('sertificate index')
+                    <li>
+                        <a href="{{ route('backend.sertificate.index') }}" class="waves-effect">
+                            <i class="fas fa-certificate"></i>
+                            <span>@lang('backend.sertificate')</span>
                         </a>
                     </li>
                 @endcan

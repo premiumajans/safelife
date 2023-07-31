@@ -181,6 +181,7 @@ return array (
   'send' => 'Göndər',
   'send-message' => 'Mesajı Göndər',
   'seo-settings' => 'Seo Tənzimləmələri',
+  'sertificate' => 'Sertifikatlar',
   'service' => 'Xidmətlər',
   'services' => 'Xidmət sahələri',
   'settings' => 'Tənzimləmələr',

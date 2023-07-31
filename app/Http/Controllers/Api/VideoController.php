@@ -10,7 +10,7 @@ class VideoController extends Controller
     public function index()
     {
         if (Video::where('status', 1)->exists()) {
-            return response()->json(['video' => Video::where('status', 1)->with('photos')->get()], 200);
+            return response()->json(['video' => Video::where('status', 1)->get()], 200);
         } else {
             return response()->json(['video' => 'Video-is-empty'], 404);
         }
@@ -19,7 +19,7 @@ class VideoController extends Controller
     public function show($id)
     {
         if (Video::where('status', 1)->where('id', $id)->exists()) {
-            return response()->json(['video' => Video::where('status', 1)->where('id', $id)->with('photos')->first()], 200);
+            return response()->json(['video' => Video::where('status', 1)->where('id', $id)->first()], 200);
         } else {
             return response()->json(['video' => 'video-is-not-founded'], 404);
         }

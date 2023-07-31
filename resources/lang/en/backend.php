@@ -181,6 +181,7 @@ return array (
   'send' => 'Send',
   'send-message' => 'Send Message',
   'seo-settings' => 'SEO Settings',
+  'sertificate' => 'Certificates',
   'service' => '',
   'services' => 'Services',
   'settings' => 'Settings',

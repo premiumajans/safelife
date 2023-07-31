@@ -2,7 +2,8 @@
     <div data-simplebar class="h-100" style="overflow-y: auto;">
         <div id="sidebar-menu">
             <ul class="metismenu list-unstyled" id="side-menu">
-{{--                {{ creation('Sertificate','Sertificate',true,false) }}--}}
+                {{--                {{ creation('Photo','Photo',true,true) }}--}}
+                {{--                {{ creation('Video','Video',true,false) }}--}}
                 <li>
                     <a href="{{ route('backend.dashboard') }}" class="waves-effect">
                         <i class="ri-home-4-fill"></i>
@@ -58,7 +59,26 @@
                         </a>
                     </li>
                 @endcan
-
+                @canany(['photo index','video index'])
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                            <i class="fas fa-briefcase"></i>
+                            <span>@lang('backend.gallery')</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li>
+                                <a href="{{ route('backend.photo.index') }}">
+                                    @lang('backend.photo') (@lang('backend.gallery'))
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('backend.video.index') }}">
+                                    @lang('backend.video') (@lang('backend.gallery'))
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcanany
 
                 @can('about index')
                     <li>
@@ -68,63 +88,63 @@
                         </a>
                     </li>
                 @endcan
-{{--                @can('content index')--}}
-{{--                    <li>--}}
-{{--                        <a href="{{ route('backend.content.index') }}" class="waves-effect">--}}
-{{--                            <i class="fas fa-file"></i>--}}
-{{--                            <span>@lang('backend.content')</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                @endcan--}}
-{{--                @can('categories index')--}}
-{{--                    <li>--}}
-{{--                        <a href="{{ route('backend.categories.index') }}" class="waves-effect">--}}
-{{--                            <i class="fas fa-bars"></i>--}}
-{{--                            <span>@lang('backend.categories')</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                @endcan--}}
-{{--                @can('faq index')--}}
-{{--                    <li>--}}
-{{--                        <a href="{{ route('backend.faq.index') }}" class="waves-effect">--}}
-{{--                            <i class="fas fa-question"></i>--}}
-{{--                            <span>@lang('backend.faq')</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                @endcan--}}
-{{--                @can('catalog index')--}}
-{{--                    <li>--}}
-{{--                        <a href="{{ route('backend.catalog.index') }}" class="waves-effect">--}}
-{{--                            <i class="fas fa-images"></i>--}}
-{{--                            <span>@lang('backend.catalog')</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                @endcan--}}
-{{--                @can('media index')--}}
-{{--                    <li>--}}
-{{--                        <a href="{{ route('backend.media.index') }}" class="waves-effect">--}}
-{{--                            <i class="fas fa-photo-video"></i>--}}
-{{--                            <span>@lang('backend.media')</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                @endcan--}}
-{{--                @can('portfolio index')--}}
-{{--                    <li>--}}
-{{--                        <a href="{{ route('backend.portfolio.index') }}" class="waves-effect">--}}
-{{--                            <i class="fas fa-portrait"></i>--}}
-{{--                            <span>@lang('backend.portfolio')</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                @endcan--}}
+                {{--                @can('content index')--}}
+                {{--                    <li>--}}
+                {{--                        <a href="{{ route('backend.content.index') }}" class="waves-effect">--}}
+                {{--                            <i class="fas fa-file"></i>--}}
+                {{--                            <span>@lang('backend.content')</span>--}}
+                {{--                        </a>--}}
+                {{--                    </li>--}}
+                {{--                @endcan--}}
+                {{--                @can('categories index')--}}
+                {{--                    <li>--}}
+                {{--                        <a href="{{ route('backend.categories.index') }}" class="waves-effect">--}}
+                {{--                            <i class="fas fa-bars"></i>--}}
+                {{--                            <span>@lang('backend.categories')</span>--}}
+                {{--                        </a>--}}
+                {{--                    </li>--}}
+                {{--                @endcan--}}
+                {{--                @can('faq index')--}}
+                {{--                    <li>--}}
+                {{--                        <a href="{{ route('backend.faq.index') }}" class="waves-effect">--}}
+                {{--                            <i class="fas fa-question"></i>--}}
+                {{--                            <span>@lang('backend.faq')</span>--}}
+                {{--                        </a>--}}
+                {{--                    </li>--}}
+                {{--                @endcan--}}
+                {{--                @can('catalog index')--}}
+                {{--                    <li>--}}
+                {{--                        <a href="{{ route('backend.catalog.index') }}" class="waves-effect">--}}
+                {{--                            <i class="fas fa-images"></i>--}}
+                {{--                            <span>@lang('backend.catalog')</span>--}}
+                {{--                        </a>--}}
+                {{--                    </li>--}}
+                {{--                @endcan--}}
+                {{--                @can('media index')--}}
+                {{--                    <li>--}}
+                {{--                        <a href="{{ route('backend.media.index') }}" class="waves-effect">--}}
+                {{--                            <i class="fas fa-photo-video"></i>--}}
+                {{--                            <span>@lang('backend.media')</span>--}}
+                {{--                        </a>--}}
+                {{--                    </li>--}}
+                {{--                @endcan--}}
+                {{--                @can('portfolio index')--}}
+                {{--                    <li>--}}
+                {{--                        <a href="{{ route('backend.portfolio.index') }}" class="waves-effect">--}}
+                {{--                            <i class="fas fa-portrait"></i>--}}
+                {{--                            <span>@lang('backend.portfolio')</span>--}}
+                {{--                        </a>--}}
+                {{--                    </li>--}}
+                {{--                @endcan--}}
 
-{{--                @can('blog index')--}}
-{{--                    <li>--}}
-{{--                        <a href="{{ route('backend.blog.index') }}" class="waves-effect">--}}
-{{--                            <i class="fas fa-blog"></i>--}}
-{{--                            <span>@lang('backend.blog')</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                @endcan--}}
+                {{--                @can('blog index')--}}
+                {{--                    <li>--}}
+                {{--                        <a href="{{ route('backend.blog.index') }}" class="waves-effect">--}}
+                {{--                            <i class="fas fa-blog"></i>--}}
+                {{--                            <span>@lang('backend.blog')</span>--}}
+                {{--                        </a>--}}
+                {{--                    </li>--}}
+                {{--                @endcan--}}
                 @can('languages index')
                     <li>
                         <a href="{{ route('backend.site-languages.index') }}" class="waves-effect">
@@ -133,14 +153,14 @@
                         </a>
                     </li>
                 @endcan
-{{--                @can('contact index')--}}
-{{--                    <li>--}}
-{{--                        <a href="{{ route('backend.contact-us.index') }}" class="waves-effect">--}}
-{{--                            <i class="ri-contacts-fill"></i>--}}
-{{--                            <span>@lang('backend.contact-us')</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                @endcan--}}
+                {{--                @can('contact index')--}}
+                {{--                    <li>--}}
+                {{--                        <a href="{{ route('backend.contact-us.index') }}" class="waves-effect">--}}
+                {{--                            <i class="ri-contacts-fill"></i>--}}
+                {{--                            <span>@lang('backend.contact-us')</span>--}}
+                {{--                        </a>--}}
+                {{--                    </li>--}}
+                {{--                @endcan--}}
                 @can('settings index')
                     <li>
                         <a href="{{ route('backend.settings.index') }}" class="waves-effect">

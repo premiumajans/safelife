@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group(['name' => 'api'], function () {
+    Route::get('/photo/{id}', [App\Http\Controllers\Api\PhotoController::class, 'show']);
+    Route::get('/photo', [App\Http\Controllers\Api\PhotoController::class, 'index']);
+    Route::get('/video/{id}', [App\Http\Controllers\Api\VideoController::class, 'show']);
+    Route::get('/video', [App\Http\Controllers\Api\VideoController::class, 'index']);
     Route::get('/project/{id}', [App\Http\Controllers\Api\ProjectController::class, 'show']);
     Route::get('/project', [App\Http\Controllers\Api\ProjectController::class, 'index']);
     Route::get('/product/{id}', [App\Http\Controllers\Api\ProductController::class, 'show']);

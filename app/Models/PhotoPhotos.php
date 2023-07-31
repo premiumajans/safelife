@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
-class MediaPhotos extends Model
+class PhotoPhotos extends Model
 {
-    public function media(): void
+    use LogsActivity;
+    public function photo(): void
     {
-        $this->belongsTo(Media::class);
+        $this->belongsTo(Photo::class);
     }
     protected $guarded = [];
     public $timestamps = [];

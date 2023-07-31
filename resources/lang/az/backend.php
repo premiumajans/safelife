@@ -91,7 +91,7 @@ return array (
   'follow-us' => 'Bizi izləyin',
   'forgot-password' => 'Şifrəni unutmusunuz?',
   'front_photo' => 'Ön şəkil',
-  'gallery' => 'Foto Qaleriya',
+  'gallery' => 'Qaleriya',
   'gead' => 'Gead',
   'gefen' => 'Gefen',
   'gefen-company' => 'GEFEN Company',

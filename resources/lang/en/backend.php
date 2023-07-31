@@ -91,7 +91,7 @@ return array (
   'follow-us' => 'Follow Us',
   'forgot-password' => 'Forgot Password?',
   'front_photo' => 'Front Photo',
-  'gallery' => 'Photo Gallery',
+  'gallery' => 'Gallery',
   'gead' => 'GEAD',
   'gefen' => 'Gefen',
   'gefen-company' => 'GEFEN Company',

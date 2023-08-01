@@ -33,19 +33,14 @@ class SearchController extends Controller
             ->orWhere('description', 'LIKE', '%' . $keyword . '%')
             ->pluck('partner_id')
             ->toArray());
-        if (!empty($result)) {
-            return response()->json([
+        return response()->json([
+            'results' => [
                 'products' => Product::whereIn('id', $productsArray)->with('photos')->get(),
                 'services' => Service::whereIn('id', $servicesArray)->with('photos')->get(),
                 'projects' => Project::whereIn('id', $projectsArray)->get(),
                 'partners' => Partner::whereIn('id', $partnersArray)->with('photos')->get(),
-            ]);
-        } else {
-            $searchResults = 'result-not-fount';
-        }
-        return response()->json([
-            'keyword' => $keyword,
-            'result' => $searchResults,
-        ], 200);
+            ],
+            'keyword' => $keyword
+        ]);
     }
 }

@@ -10,7 +10,7 @@ class AboutController extends Controller
     public function index()
     {
         if (About::where('status', 1)->exists()) {
-            return response()->json(['about' => About::where('status', 1)->with('photos')->get()], 200);
+            return response()->json(['about' => About::where('status', 1)->get()], 200);
         } else {
             return response()->json(['about' => 'About-is-empty'], 404);
         }
@@ -19,7 +19,7 @@ class AboutController extends Controller
     public function show($id)
     {
         if (About::where('status', 1)->where('id', $id)->exists()) {
-            return response()->json(['about' => About::where('status', 1)->where('id', $id)->with('photos')->first()], 200);
+            return response()->json(['about' => About::where('status', 1)->where('id', $id)->first()], 200);
         } else {
             return response()->json(['about' => 'about-is-not-founded'], 404);
         }

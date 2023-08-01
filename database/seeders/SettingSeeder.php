@@ -3,13 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Setting;
-use Hamcrest\Core\Set;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class SettingSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         $settings = [
             ['name' => 'phone', 'link' => '+994125144344'],

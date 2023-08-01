@@ -21,6 +21,7 @@ Route::group(['name' => 'api'], function () {
     Route::get('/slider', [App\Http\Controllers\Api\SliderController::class, 'index']);
     Route::get('/sertificate/{id}', [App\Http\Controllers\Api\SertificateController::class, 'show']);
     Route::get('/sertificate', [App\Http\Controllers\Api\SertificateController::class, 'index']);
+    Route::get('/search/{keyword}',[\App\Http\Controllers\Api\SearchController::class,'search']);
     Route::get('/settings', function () {
         return App\Models\Setting::all();
     });

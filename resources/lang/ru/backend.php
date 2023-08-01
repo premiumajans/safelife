@@ -63,6 +63,7 @@ return array (
   'created' => 'Создано',
   'current-package' => 'Текущий пакет',
   'faq' => 'Часто задаваемые вопросы',
+  'gallery' => 'Галерея',
   'general' => '',
   'media' => '',
   'meta' => 'Мета',

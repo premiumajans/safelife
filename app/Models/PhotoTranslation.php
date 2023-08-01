@@ -4,15 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
-class MediaPhotos extends Model
+class PhotoTranslation extends Model
 {
-    public function media(): void
-    {
-        $this->belongsTo(Media::class);
-    }
-    protected $guarded = [];
-    public $timestamps = [];
+    use LogsActivity;
+    public $timestamps = false;
+    protected $fillable = ['name'];
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logAll();

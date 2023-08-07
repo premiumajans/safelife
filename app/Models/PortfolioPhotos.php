@@ -7,9 +7,9 @@ use Spatie\Activitylog\LogOptions;
 
 class PortfolioPhotos extends Model
 {
-    public function portfolio()
+    public function portfolio(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        $this->belongsTo(Portfolio::class);
+        return $this->belongsTo(Portfolio::class);
     }
     protected $guarded = [];
     public $timestamps = [];

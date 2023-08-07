@@ -6,9 +6,9 @@ use Spatie\Activitylog\LogOptions;
 
 class PartnerPhotos extends Model
 {
-    public function partner(): void
+    public function partner(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        $this->belongsTo(Partner::class);
+        return $this->belongsTo(Partner::class);
     }
     protected $guarded = [];
     public $timestamps = [];

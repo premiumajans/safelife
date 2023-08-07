@@ -40,8 +40,15 @@
                                             <div class="mb-3">
                                                 <label>@lang('backend.photo') <span
                                                         class="text-danger">*</span></label>
-                                                <input name="photo" type="file" class="form-control">
+                                                <input name="photo" type="file" class="form-control" required>
                                             </div>
+                                            <div class="mb-3">
+                                                <label>@lang('backend.photos')</label>
+                                                <input type="file" class="form-control mb-2" id="photos" name="photos[]"
+                                                       multiple>
+                                                <div id="image-preview-container" class="d-flex flex-wrap"></div>
+                                            </div>
+
                                     </div>
                                 </div>
                                 @include('backend.templates.components.buttons')
@@ -55,4 +62,5 @@
 @endsection
 @section('scripts')
     @include('backend.templates.components.tiny')
+    @include('backend.templates.components.preview-images')
 @endsection

@@ -11,7 +11,6 @@ use App\Models\Project;
 use App\Models\ProjectTranslation;
 use App\Models\Service;
 use App\Models\ServiceTranslation;
-use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {

@@ -40,11 +40,30 @@
                                             </div>
                                         @endforeach
                                         <div class="mb-3">
-                                            <label>@lang('backend.photo') <span
-                                                    class="text-danger">*</span></label>
+                                            <label>@lang('backend.photo')</label>
                                             <input name="photo" type="file" class="form-control">
                                             @if(file_exists($project->photo))
                                                 <img src="{{ asset($project->photo) }}" class="form-control w-100 mt-2">
+                                            @endif
+                                        </div>
+                                        <div class="mb-3">
+                                            <label>@lang('backend.photos')</label>
+                                            <input type="file" class="form-control mb-2" id="photos" name="photos[]"
+                                                   multiple>
+                                            <div id="image-preview-container" class="d-flex flex-wrap"></div>
+                                            @if($project->photos()->exists())
+                                                <div class="d-flex"
+                                                     style="min-height: 150px; overflow: hidden; margin-bottom: 10px;border: 1px solid black; flex-wrap:wrap">
+                                                    @foreach($project->photos()->get() as $photo)
+                                                        <div style="position:relative;" class="wraper  m-3">
+                                                            <img src="{{ asset($photo->photo) }}"
+                                                                 style="height: 200px; width: 170px; object-fit: cover;">
+                                                            <a style="position: absolute; right:5px; top:5px"
+                                                               type="button" class="btn btn-danger"
+                                                               href="{{ route('backend.deletePhoto',['model' => 'Project','id' => $photo->id]) }}">X</a>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
                                             @endif
                                         </div>
                                     </div>

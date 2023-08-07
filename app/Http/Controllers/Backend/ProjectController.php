@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Helpers\CRUDHelper;
+use App\Models\ProductPhotos;
 use App\Models\ProjectPhotos;
 use App\Models\ProjectTranslation;
 use Exception;
@@ -33,6 +34,13 @@ class ProjectController extends Controller
             $project = new Project();
             $project->photo = upload('project', $request->file('photo'));
             $project->save();
+            if ($request->hasFile('photos')) {
+                foreach (multi_upload('project', $request->file('photos')) as $photo) {
+                    $projectPhoto = new ProjectPhotos();
+                    $projectPhoto->photo = $photo;
+                    $project->photos()->save($projectPhoto);
+                };
+            }
             foreach (active_langs() as $lang) {
                 $translation = new ProjectTranslation();
                 $translation->locale = $lang->code;
@@ -67,6 +75,13 @@ class ProjectController extends Controller
                         unlink(public_path($project->photo));
                     }
                     $project->photo = upload('project', $request->file('photo'));
+                }
+                if ($request->hasFile('photos')) {
+                    foreach (multi_upload('project', $request->file('photos')) as $photo) {
+                        $projectPhoto = new ProjectPhotos();
+                        $projectPhoto->photo = $photo;
+                        $project->photos()->save($projectPhoto);
+                    };
                 }
                 foreach (active_langs() as $lang) {
                     $project->translate($lang->code)->name = $request->name[$lang->code];

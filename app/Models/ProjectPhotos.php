@@ -4,14 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
-class PhotoPhotos extends Model
+class ProjectPhotos extends Model
 {
-    use LogsActivity;
-    public function photo()
+    public function project(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Photo::class);
+        return $this->belongsTo(Product::class);
     }
     protected $guarded = [];
     public $timestamps = [];

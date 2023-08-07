@@ -38,7 +38,7 @@
                                                         <textarea name="description[{{ $lan->code }}]"
                                                                   id="elm{{$lan->code}}1"
                                                                   class="form-control"
-                                                                  required="">{!! $partner->translate($lan->code)->name ?? __('backend.translation-not-found') !!}</textarea>
+                                                                  required="">{!! $partner->translate($lan->code)->description ?? __('backend.translation-not-found') !!}</textarea>
                                                         {!! validation_response('backend.description') !!}
                                                     </div>
                                                 </div>
